@@ -17,12 +17,19 @@
                     </p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button
-                        wire:click="toggleStatus({{ $task->id }})"
-                        class="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-400">
-                        {{ $task->completed ? 'Mark Pending' : 'Mark Done' }}
-                    </button>
-
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox"
+                            wire:click="toggleStatus({{ $task->id }})"
+                            class="hidden"
+                            {{ $task->completed ? '' : 'checked' }}>
+                        <span class="w-5 h-5 flex items-center justify-center border-2 border-blue-500 rounded bg-white dark:bg-gray-800">
+                            @if($task->completed)
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            @endif
+                        </span>
+                    </label>
                     <button
                         wire:click="editTask({{ $task->id }})"
                         class="px-3 py-1 bg-yellow-500 text-white text-xs rounded hover:bg-yellow-400">
